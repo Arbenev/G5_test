@@ -14,12 +14,12 @@ class LuckyTickets
     {
         $index = $num;
         if (!isset(self::$sums[$index])) {
-            $sum = $num % 100;
-            $num = (int) ($num / 100);
-            $sum += $num % 10;
-            $num = (int) ($num / 10);
+            $sum = (int) ($num / 100);
+            $num = $num % 100;
+            $sum += (int) ($num / 10);
+            $num = $num % 10;
             $sum += $num;
-            while ($sum > 10) {
+            while ($sum > 9) {
                 $sum = (int) ($sum / 10) + ($sum % 10);
             }
             self::$sums[$index] = $sum;
