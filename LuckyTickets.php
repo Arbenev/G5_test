@@ -14,13 +14,13 @@ class LuckyTickets
     {
         $index = $num;
         if (!isset(self::$sums[$index])) {
-            $sum = (int) ($num / 100);
+            $sum = intdiv($num, 100);
             $num = $num % 100;
-            $sum += (int) ($num / 10);
+            $sum += intdiv($num, 10);
             $num = $num % 10;
             $sum += $num;
             while ($sum > 9) {
-                $sum = (int) ($sum / 10) + ($sum % 10);
+                $sum = intdiv($sum, 10) + ($sum % 10);
             }
             self::$sums[$index] = $sum;
         }
@@ -29,7 +29,7 @@ class LuckyTickets
 
     private static function isTicketLucky(int $num): bool
     {
-        $firstNumbers = (int) ($num / 1000);
+        $firstNumbers = intdiv($num, 1000);
         $lastNumbers = $num % 1000;
         return self::getSum($firstNumbers) == self::getSum($lastNumbers);
     }
